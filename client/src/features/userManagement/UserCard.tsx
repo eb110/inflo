@@ -1,5 +1,6 @@
-import { ListItem, ListItemText, TableCell, TableRow } from "@mui/material";
+import { Button, TableCell, TableRow } from "@mui/material";
 import { User } from "../../app/models/user";
+import { Link } from "react-router-dom";
 
 interface Props {
   user: User;
@@ -17,6 +18,9 @@ export const UserCard = ({ user }: Props) => {
         <TableCell align="right">{user.email}</TableCell>
         <TableCell align="right">{"" + user.isActive}</TableCell>
         <TableCell align="right">{user.dateOfBirth}</TableCell>
+        <TableCell align="right">
+          <Button component={Link} to={`/users/${user.id}`} size='small'>View</Button>
+        </TableCell>
       </TableRow>
     </>
   );

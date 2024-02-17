@@ -30,6 +30,7 @@ export const UserList = ({users}: Props) => {
               <TableCell sx={{color: 'primary.main'}} align="right">Email</TableCell>
               <TableCell sx={{color: 'primary.main'}} align="right">IsActive</TableCell>
               <TableCell sx={{color: 'primary.main'}} align="right">DOB</TableCell>
+              <TableCell sx={{color: 'primary.main'}} align="right"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
