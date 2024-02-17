@@ -1,5 +1,6 @@
 using API.Data;
 using API.Entities;
+using API.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,13 @@ builder.Services.AddCors();
 
 var app = builder.Build();
 
+//app.UseDeveloperExceptionPage(); added by default
+
 // Configure the HTTP request pipeline.
+//the server error custom handler => go to ExceptionMiddleware class
+app.UseMiddleware<ExceptionMiddleware>();
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

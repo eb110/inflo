@@ -3,6 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { User } from "../../app/models/user";
+import agent from "../../app/api/agent";
+import { NotFound } from "../../app/errors/NotFound";
+import { LoadingComponent } from "../../app/layout/LoadingComponent";
 
 export const UserDetails = () => {
 
@@ -11,14 +14,14 @@ export const UserDetails = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/users/${id}`)
-        .then(res => setUser(res.data))
+       id && agent.Users.details(+id)
+        .then(res => setUser(res))
         .catch(error => console.log(error))
         .finally(() => setLoading(false));
     }, [id])
 
-    if(loading) return <h3>loading...</h3>
-    if(!user) return <h3>user not found</h3>
+    if(loading) return <LoadingComponent message='Loading user details...'/>
+    if(!user) return <NotFound />
 
     return (
         <>
